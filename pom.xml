@@ -5,12 +5,12 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.dragon</groupId>
-    <artifactId>dragon-app</artifactId>
+    <groupId>com.hellgod</groupId>
+    <artifactId>hellgod</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
 
-    <name>Dragon Web Application</name>
+    <name>Hell God Web App</name>
 
     <!-- Java 8 Configuration -->
     <properties>
@@ -19,24 +19,23 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <!-- Servlet API for Tomcat 8 -->
     <dependencies>
-
-        <!-- Servlet API for Tomcat 8 -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
             <scope>provided</scope>
         </dependency>
-
     </dependencies>
 
     <build>
-        <finalName>dragon-app</finalName>
+        <!-- WAR file name -->
+        <finalName>hellgod</finalName>
 
         <plugins>
 
-            <!-- Compiler Plugin for Java 8 -->
+            <!-- Java 8 Compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -52,6 +51,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.3.2</version>
+                <configuration>
+                    <!-- Important for projects without web.xml -->
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
             </plugin>
 
         </plugins>
