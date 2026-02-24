@@ -12,15 +12,14 @@
 
     <name>Hell God Web App</name>
 
-    <!-- Java 8 Configuration -->
+    <!-- Java 8 -->
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <!-- Servlet API for Tomcat 8 -->
     <dependencies>
+        <!-- Tomcat 8 Servlet API -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -30,12 +29,21 @@
     </dependencies>
 
     <build>
-        <!-- WAR file name -->
         <finalName>hellgod</finalName>
+
+        <!-- 👇 THIS IS IMPORTANT PART -->
+        <resources>
+            <resource>
+                <directory>${project.basedir}</directory>
+                <includes>
+                    <include>index.html</include>
+                    <include>assets/**</include>
+                </includes>
+            </resource>
+        </resources>
 
         <plugins>
 
-            <!-- Java 8 Compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -46,13 +54,13 @@
                 </configuration>
             </plugin>
 
-            <!-- WAR Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.3.2</version>
                 <configuration>
-                    <!-- Important for projects without web.xml -->
+                    <!-- Use project root as web source -->
+                    <warSourceDirectory>${project.basedir}</warSourceDirectory>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
